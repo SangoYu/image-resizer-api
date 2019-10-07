@@ -19,6 +19,6 @@ The resized image.
 If the image url is invalid, returns error `Image error`;
 
 ### demo
-http://resizer.sangolab.top/?url=https://pic4.zhimg.com/d1b270239fb85f1dd851e8ba1945b399.jpg&width=100
+[http://resizer.sangolab.top/?url=https://pic4.zhimg.com/d1b270239fb85f1dd851e8ba1945b399.jpg&width=100](http://resizer.sangolab.top/?url=https://pic4.zhimg.com/d1b270239fb85f1dd851e8ba1945b399.jpg&width=100){:target="_blank"}
 
 
