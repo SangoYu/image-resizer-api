@@ -19,6 +19,6 @@ The resized image.
 If the image url is invalid, returns error `Image error`;
 
 ### demo
-[http://resizer.sangolab.top/?url=http://p3.music.126.net/Sv4H_U63vjguKBrRj_tUaA==/109951162839290909.jpg](http://resizer.sangolab.top/?url=http://p3.music.126.net/Sv4H_U63vjguKBrRj_tUaA==/109951162839290909.jpg)
+[http://resizer.sangolab.top/?url=http://p3.music.126.net/Sv4H_U63vjguKBrRj_tUaA==/109951162839290909.jpg&width=100&height=100](http://resizer.sangolab.top/?url=http://p3.music.126.net/Sv4H_U63vjguKBrRj_tUaA==/109951162839290909.jpg&width=100&height=100)
 
 
