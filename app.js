@@ -36,7 +36,7 @@ router.get('*', ctx => {
         ctx.body = request(url)
             .pipe(new JPEGDecoder)
             .pipe(resize(option))
-            .pipe(new JPEGEncoder);
+            .pipe(new JPEGEncoder({ quality: 50 }));
     }catch(e) {
         return ctx.body = 'Image error';
     }
