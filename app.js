@@ -26,7 +26,7 @@ router.get('*', ctx => {
         try{
             return ctx.body = request(url);
         }catch(e){
-            return ctx.body = '图片url异常';
+            return ctx.body = 'Image error';
         }
     }
 
@@ -38,7 +38,7 @@ router.get('*', ctx => {
             .pipe(resize(option))
             .pipe(new JPEGEncoder);
     }catch(e) {
-        return ctx.body = '图片url异常';
+        return ctx.body = 'Image error';
     }
 
     
