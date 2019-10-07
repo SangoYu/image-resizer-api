@@ -1,0 +1,18 @@
+{
+  "name": "resizer",
+  "version": "1.0.0",
+  "description": "image resizer web api service",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm run app.js"
+  },
+  "author": "Sango",
+  "license": "MIT",
+  "dependencies": {
+    "jpg-stream": "^1.1.2",
+    "koa": "^2.8.2",
+    "koa-router": "^7.4.0",
+    "request": "^2.88.0",
+    "resizer-stream": "^1.0.1"
+  }
+}
