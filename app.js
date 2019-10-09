@@ -12,9 +12,9 @@ pics.use(require('gif-stream'));
 pics.use(require('jpg-stream'));
 pics.use(require('png-stream'));
 
-router.get('/*.jpg', ctx => {
+router.get('/*', ctx => {
 
-    let url = ctx.url.slice(1);
+    let url = ctx.url.match(/http.+/)[0];
     
     let dimensionStr = url.split('@');
     url = dimensionStr[0];

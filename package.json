@@ -4,7 +4,8 @@
   "description": "image resizer web api service",
   "main": "app.js",
   "scripts": {
-    "start": "npm run app.js"
+    "start": "pm2 start app.js --name resizer",
+    "prestart": "npm install"
   },
   "author": "Sango",
   "license": "MIT",
