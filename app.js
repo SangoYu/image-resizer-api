@@ -19,6 +19,7 @@ router.get('/*', ctx => {
     if (!matchedArr || !matchedArr[0]){
         return ctx.body = 'Image error';
     }
+    let url = matchedArr[0];
     
     let dimensionStr = url.split('@');
     url = dimensionStr[0];
