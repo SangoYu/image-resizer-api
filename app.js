@@ -1,20 +1,16 @@
 const Koa = require('koa');
 const request = require('request');
 const Router = require('koa-router');
-const pics = require('pics');
-const resize = require('resizer-stream');
 const probe = require('probe-image-size');
+const sharp = require('sharp');
 const router = new Router();
 const app = new Koa();
+const S3 = require('./s3');
 const config = require('./config.json');
-
-pics.use(require('gif-stream'));
-pics.use(require('jpg-stream'));
-pics.use(require('png-stream'));
 
 router.get('/*', ctx => {
 
-    let matchedArr = ctx.url.match(/http.+/);
+    let matchedArr = ctx.url.match(/(http|https|s3):\/\/.+/);
 
     if (!matchedArr || !matchedArr[0]){
         return ctx.body = 'Image error';
@@ -33,6 +29,10 @@ router.get('/*', ctx => {
 
     if(width) {
         option.width = parseInt(width);
+
+        if(option.width>3000){
+            return ctx.body = 'Image too large';
+        }
     }
 
     if (height && height.indexOf('q')==-1){
@@ -46,37 +46,44 @@ router.get('/*', ctx => {
     }
 
     try{
-        
-        let resizeStream = () => {
-            return request(url)
-                .pipe(pics.decode())
-                .pipe(resize(option))
-                .pipe(pics.encode('image/jpeg' ,{ quality: quality || config.quality }))
+
+        let resizeStream = (stream) => {
+            return stream
+                .pipe(sharp.resize(option)).jpeg(option);
         };
 
-        let urlOrStream = url;
-        let noSize = true;
+        let getStream = () => {
+            let stream;
+            if (/s3:\/\//.test(url)) {
+                let arr = url.split('s3://' + config.bucket + '/');
+                let Key = arr[1];
+                stream = S3.getObject({
+                    Bucket: config.bucket,
+                    Key
+                }).createReadStream();
+            } else {
+                stream = request(url);
+            }
 
+            if (width || height) {
+                stream = resizeStream(stream);
+            }
 
-        if (width || height) {
-            urlOrStream = resizeStream();
-            noSize = false;
+            return stream;
         }
-        
+
+        let newStream = getStream();        
             
-        return probe(urlOrStream).then(res => {
+        return probe(newStream).then(res => {
             ctx.type = 'image/jpeg';
             ctx.set({
                 width: res.width,
                 height: res.height
             });
-            if(noSize){
-                ctx.body = request(url);
-            }else{
-                ctx.body = resizeStream();
-            }
+            ctx.body = getStream();
         });
     }catch(e) {
+        console.log(e);
         return ctx.body = 'Image error';
     }
 

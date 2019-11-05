@@ -10,6 +10,7 @@
   "author": "Sango",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.562.0",
     "gif-stream": "^1.1.0",
     "jpg-stream": "^1.1.2",
     "koa": "^2.8.2",
