@@ -11,15 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.562.0",
-    "gif-stream": "^1.1.0",
-    "jpg-stream": "^1.1.2",
     "koa": "^2.8.2",
     "koa-router": "^7.4.0",
-    "pics": "^1.0.3",
-    "png-stream": "^1.0.5",
     "probe-image-size": "^5.0.0",
-    "request": "^2.88.0",
-    "resizer-stream": "^1.0.1",
-    "sharp": "^0.23.2"
+    "sharp": "^0.23.2",
+    "request": "^2.88.0"
   }
 }
