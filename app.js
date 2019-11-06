@@ -49,7 +49,7 @@ router.get('/*', ctx => {
 
         let resizeStream = (stream) => {
             return stream
-                .pipe(sharp.resize(option)).jpeg(option);
+                .pipe(sharp().resize(option)).jpeg(option);
         };
 
         let getStream = () => {
